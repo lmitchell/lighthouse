@@ -5,20 +5,6 @@
  */
 
  declare module Smokehouse {
-  export interface Difference {
-    path: string;
-    actual: any;
-    expected: any;
-  }
-
-  export interface Comparison {
-    name: string;
-    actual: any;
-    expected: any;
-    equal: boolean;
-    diff?: Difference | null;
-  }
-
   interface ExpectedLHR {
     audits: Record<string, any>;
     requestedUrl: string;
@@ -38,12 +24,12 @@
   export interface TestDfn {
     id: string;
     expectations: ExpectedRunnerResult[];
-    config: LH.Config.Json;
-    batch: string;
+    config?: LH.Config.Json;
+    runParallel: boolean;
   }
 
   export interface FirehouseOptions {
-    runLighthouse: (url: string, config: LH.Config.Json) => Promise<Omit<LH.RunnerResult, 'report'>>;
+    runLighthouse: (url: string, config?: LH.Config.Json) => Promise<Omit<LH.RunnerResult, 'report'>>;
     urlFilterRegex?: RegExp;
     skip?: (test: TestDfn, expectation: ExpectedRunnerResult) => string | false;
     modify?: (test: TestDfn, expectation: ExpectedRunnerResult) => void;

@@ -39,8 +39,9 @@ test_script:
   - yarn type-check
   # FIXME: Exclude Appveyor from running `perf` smoketest until we fix the flake.
   #     https://github.com/GoogleChrome/lighthouse/issues/5053
-  # - yarn smoke
-  - yarn smoke a11y pwa pwa2 pwa3 dbw redirects seo offline byte metrics
+  # - yarn smoke -j=1 --retries=3
+  # run smoke tests serially, retrying up to three times to prevent flakes.
+  - yarn smoke -j=1 --retries=3 a11y pwa pwa2 pwa3 dbw redirects seo offline byte metrics
 
 cache:
   #- chrome-win32 -> appveyor.yml,package.json
