@@ -160,11 +160,11 @@ async function runSmokeTest(testOptions) {
   // Rerun test until there's a passing result or retries are exhausted to prevent flakes.
   let result;
   let report;
-  for (let i = 0; i < retries; i++) {
+  for (let i = 0; i <= retries; i++) {
     if (i === 0) {
       localConsole.log(`Doing a run of '${requestedUrl}'...`);
     } else {
-      localConsole.log(`Retrying run (${i + 1} out of ${retries})...`);
+      localConsole.log(`Retrying run (${i} out of ${retries} retries)...`);
     }
 
     // Run Lighthouse.

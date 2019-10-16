@@ -39,7 +39,7 @@
     "watch": "yarn unit-core --watch",
     "unit:cicoverage": "nyc --all --hook-run-in-context npm run unit:ci && nyc report --reporter text-lcov > unit-coverage.lcov",
     "coverage": "yarn unit:cicoverage && nyc report --reporter html",
-    "smoke:cicoverage": "nyc npm run smoke -- -j=1 --retries=3 && nyc report --reporter text-lcov > smoke-coverage.lcov",
+    "smoke:cicoverage": "nyc npm run smoke -- -j=1 --retries=2 && nyc report --reporter text-lcov > smoke-coverage.lcov",
     "coverage:smoke": "yarn smoke:cicoverage && nyc report --reporter html",
     "coveralls": "cat unit-coverage.lcov | coveralls",
     "codecov": "codecov -f unit-coverage.lcov -F unit && codecov -f smoke-coverage.lcov -F smoke",

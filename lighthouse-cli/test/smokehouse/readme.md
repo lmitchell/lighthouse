@@ -8,6 +8,10 @@ By default this is done using the Lighthouse CLI (to exercise the full pipeline)
 
 See [`SmokehouseOptions`](https://github.com/GoogleChrome/lighthouse/blob/master/lighthouse-cli/test/smokehouse/smokehouse.js#L23).
 
+## Test definitions
+
+## Expectations
+
 ## Pipeline
 
 Frontends                                                   Runners
@@ -15,19 +19,22 @@ Frontends                                                   Runners
 |            |
 |  bin (CLI) +----+                                +--------------+
 |            |    |                                |              |
-+------------+    |                            +-->+lighthouse-cli|
++------------+    |                            +-->+lighthouse+cli|
                   |                            |   |              |
 +------------+    |      +---------------+     |   +--------------+
 |            |    |      |               |     |
-|   node     +----+----->+ smokehouse.js +-----+
+|   node     +---------->+ smokehouse.js +-----+
 |            |    |      |               |     |   +--------------+
-+------------+    |      +---------------+     |   |              |
-                  |                            +-->+  bundled-LH  |
-+------------+    |                                |              |
-|            |    |                                +--------------+
-|bundle-entry+----+
-|            |
-+------------+
++------------+    |      +-------+-------+     |   |              |
+                  |              ^             +-->+  bundled+LH  |
++------------+    |              |                 |              |
+|            |    |              |                 +--------------+
+|bundle+entry+----+              v
+|            |          +--------+--------+
++------------+          |                 |
+                        |  report/assert  |
+                        |                 |
+                        +-----------------+
 
 ### Frontend
 - `smokehouse-bin.js` - runs smokehouse from the command line
